@@ -30,7 +30,8 @@ const questions = [
     {
         type: "input",
         message: "How do you Install?",
-        name: "installation"
+        name: "installation",
+        default: "npm i"
     },
     {
         type: "input",
@@ -40,7 +41,7 @@ const questions = [
     {
         type: "list",
         message: "Please select a type of license.",
-        choices:["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"],
+        choices:["MIT", "APACHE2.0", "GPL3.0", "BSD3", "None"],
         name: "license"
     },
     {
@@ -50,7 +51,7 @@ const questions = [
     },
     {
         type: "input",
-        message: "Contribution?",
+        message: "What did you contribute?",
         name: "contribution"
     },
     {
@@ -61,7 +62,7 @@ const questions = [
     },
     {
         type: "input",
-        message: "Do you havbe any questions?",
+        message: "Do you have any questions?",
         name: "questions"
     }
 ];
@@ -69,8 +70,8 @@ const questions = [
 
 var inquirer = require("inquirer");
 var fs = require("fs");
-var path = require("path")
-var generateMarkDown = require("./utils/generateMarkdown")
+var path = require("path");
+var generateMarkDown = require("./utils/generateMarkdown");
 
 function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
@@ -79,8 +80,13 @@ function writeToFile(fileName, data) {
 inquirer.prompt(questions).then(response => {
     console.log(response);
     
-    writeToFile("README.md", generateMarkDown({...response}))
+    writeToFile("READMEGEN.md", generateMarkDown({...response}))
     
+    
+});
+
+
+    // alternate way I did to write the code
     // function to initialize program
     
     
@@ -134,4 +140,3 @@ inquirer.prompt(questions).then(response => {
     //         return console.log(err);
     //     }    
     // });
-});
